@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        AI Age Analyzer
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/style.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-container">
+
+
+    <!-- ================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ================================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+
+                <div class="face-circle"></div>
+
+            </div>
+
+
+            <h1>
+                AI Age Analyzer
+            </h1>
+
+
+            <p>
+                Estimate age from a face image
+                using a trained CNN model.
+            </p>
+
+        </div>
+
+
+        <!-- ONLY TWO NAVIGATION ITEMS -->
+
+        <nav class="navigation">
+
+
+            <a
+                href="#home"
+                class="nav-item active"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <a
+                href="#samples"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+                    ▧
+                </span>
+
+                <span>
+                    Sample Images
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR CARD -->
+
+        <div class="sidebar-card">
+
+
+            <div class="bulb">
+                💡
+            </div>
+
+
+            <h3>
+                AI for a Better
+                Tomorrow
+            </h3>
+
+
+            <p>
+                Practical AI solutions
+                for a smarter world.
+            </p>
+
+
+            <div class="small-line"></div>
+
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- ================================================= -->
+    <!-- MAIN -->
+    <!-- ================================================= -->
+
+    <main
+        class="main-content"
+        id="home"
+    >
+
+
+        <!-- TOP -->
+
+        <div class="top-header">
+
+            <span>
+                Built with
+                <b>♥</b>
+                using
+                <strong>Flask</strong>
+            </span>
+
+        </div>
+
+
+        <!-- HEADER -->
+
+        <section class="hero-section">
+
+
+            <div>
+
+                <h2>
+
+                    AI Age
+                    <span>Analysis</span>
+
+                </h2>
+
+
+                <p>
+
+                    Upload a face image to estimate
+                    the age using your trained CNN model.
+
+                </p>
+
+            </div>
+
+
+            <div class="ai-card">
+
+
+                <div class="ai-symbol">
+                    📊
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        AI Powered
+                    </strong>
+
+                    <small>
+                        Fast • Reliable • Easy to Use
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN GRID -->
+        <!-- ================================================= -->
+
+        <section class="main-grid">
+
+
+            <!-- ================================================= -->
+            <!-- UPLOAD -->
+            <!-- ================================================= -->
+
+            <div class="upload-card">
+
+
+                <div class="card-title">
+
+
+                    <div class="title-icon">
+                        ↑
+                    </div>
+
+
+                    <h3>
+                        Upload an Image
+                    </h3>
+
+
+                </div>
+
+
+                <p class="subtitle">
+
+                    Choose a clear face image
+                    (JPG, JPEG, PNG)
+
+                </p>
+
+
+                <!-- DROP AREA -->
+
+                <div
+                    class="drop-area"
+                    id="dropArea"
+                >
+
+
+                    <div class="upload-icon">
+                        ☁
+                    </div>
+
+
+                    <p>
+                        Drag and drop an image here
+                    </p>
+
+
+                    <span>
+                        or
+                    </span>
+
+
+                    <button
+                        type="button"
+                        class="browse-button"
+                        id="browseButton"
+                    >
+
+                        📁
+                        Browse Files
+
+                    </button>
+
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept=".jpg,.jpeg,.png"
+                        hidden
+                    >
+
+
+                </div>
+
+
+                <div class="supported-text">
+
+                    Supported formats:
+                    JPG, JPEG, PNG
+
+                    <span>|</span>
+
+                    Max size:
+                    5 MB
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <!-- ================================================= -->
+                <!-- SAMPLES -->
+                <!-- ================================================= -->
+
+                <div id="samples">
+
+
+                    <h4>
+                        Try with sample images
+                    </h4>
+
+
+                    <div class="sample-grid">
+
+
+                        <div
+                            class="sample-image"
+                            onclick="
+                                selectSample(
+                                    'sample1.png'
+                                )
+                            "
+                        >
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='samples/sample1.png'
+                                ) }}"
+                                alt="Sample 1"
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="sample-image"
+                            onclick="
+                                selectSample(
+                                    'sample2.png'
+                                )
+                            "
+                        >
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='samples/sample2.png'
+                                ) }}"
+                                alt="Sample 2"
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="sample-image"
+                            onclick="
+                                selectSample(
+                                    'sample3.png'
+                                )
+                            "
+                        >
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='samples/sample3.png'
+                                ) }}"
+                                alt="Sample 3"
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="sample-image"
+                            onclick="
+                                selectSample(
+                                    'sample4.png'
+                                )
+                            "
+                        >
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='samples/sample4.png'
+                                ) }}"
+                                alt="Sample 4"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- RESULT -->
+            <!-- ================================================= -->
+
+            <div class="result-card">
+
+
+                <div class="card-title">
+
+
+                    <div class="title-icon">
+                        📊
+                    </div>
+
+
+                    <h3>
+                        Prediction Result
+                    </h3>
+
+
+                </div>
+
+
+                <!-- IMAGE + AGE -->
+
+                <div class="prediction-area">
+
+
+                    <div
+                        class="result-image-container"
+                    >
+
+                        <img
+                            id="resultImage"
+                            src=""
+                            alt="Uploaded image"
+                        >
+
+
+                        <div
+                            class="no-image"
+                            id="noImage"
+                        >
+
+                            Upload image
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- AGE -->
+
+                    <div class="age-result">
+
+
+                        <div class="age-label">
+
+                            <span>
+                                📅
+                            </span>
+
+                            Estimated Age
+
+                        </div>
+
+
+                        <div class="age-number">
+
+                            <span id="ageNumber">
+                                --
+                            </span>
+
+                            <small>
+                                years
+                            </small>
+
+                        </div>
+
+
+                        <div class="age-range">
+
+                            <span>
+                                Age Range
+                            </span>
+
+
+                            <strong id="ageGroup">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- AGE BAR -->
+
+                <div class="age-model-label">
+
+                    Age model estimate
+
+                </div>
+
+
+                <div class="age-bar-container">
+
+
+                    <div class="age-bar">
+
+                        <div
+                            class="age-bar-fill"
+                            id="ageBar"
+                        ></div>
+
+                    </div>
+
+
+                    <strong id="ageValue">
+                        --
+                    </strong>
+
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MODEL OUTPUT -->
+                <!-- ================================================= -->
+                <!-- ================================================= -->
+                <!-- GENDER RESULT -->
+                <!-- ================================================= -->
+
+                <div class="gender-title">
+
+                    <span>
+                        👤
+                    </span>
+
+                    Gender
+
+                </div>
+
+                <div class="model-output-box">
+
+                    <div class="output-row">
+
+                        <span>
+                            Gender
+                        </span>
+
+                        <strong id="genderResult">
+                            --
+                        </strong>
+
+                    </div>
+
+                    <div class="output-description">
+
+                        Gender label from the dataset.
+
+                    </div>
+
+                </div>
+
+                <!-- COMPLETE -->
+
+                <div
+                    class="complete-message"
+                    id="completeMessage"
+                >
+
+
+                    <div class="success-icon">
+                        ✓
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Analysis Complete!
+                        </strong>
+
+
+                        <p>
+                            Age estimated from the
+                            uploaded image.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            AI Age Analyzer © 2026
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/script.js'
+    ) }}"
+></script>
+
+
+</body>
+
+</html>
